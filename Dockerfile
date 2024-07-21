@@ -23,4 +23,4 @@ RUN pip install --no-cache /wheels/*
 COPY . .
 
 # run code
-ENTRYPOINT [ "flask", "findblahaj", "run"]
+ENTRYPOINT ["python", "main.py"]

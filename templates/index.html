@@ -3,12 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Blahaj</title>
+    <title>Coming Soon</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            flex-direction: column;
+        }
+        .countdown {
+            font-size: 2em;
+        }
+        .message {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Blahaj has gone missing!</h1>
+    <div class="message">coming soon...</div>
+    <div id="countdown" class="countdown"></div>
 
-    <p>Help us find him :(</p>
-    
+    <script>
+        function countdownTimer(targetDate) {
+            const countdownElement = document.getElementById('countdown');
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.innerHTML = "EXPIRED";
+                }
+            }
+
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
+        }
+
+        const targetDate = new Date('September 21, 2024 00:00:00').getTime();
+        countdownTimer(targetDate);
+    </script>
 </body>
 </html>
