@@ -11,5 +11,8 @@ Quit looking at the source, there are no secrets here ^-^
 - `venv/scripts/activate`
 - `pip install -r requirements.txt`
 
-- `flask run --debug`
-- use docker for prod
+in dev
+- `flask --app main.py --debug run`
+
+in prod:
+- `python main.py` (this uses waitress as a webserver)

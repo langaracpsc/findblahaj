@@ -25,11 +25,37 @@
             font-size: 1.5em;
             margin-bottom: 20px;
         }
+        #blahaj {
+            position: fixed;
+            top: 50%;
+            left: -150px;
+            width: 100px;
+            transform: translateY(-50%);
+            animation: swim 10s linear infinite;
+        }
+        @keyframes swim {
+            0% {
+                left: -150px;
+                transform: translateY(-50%) scaleX(1);
+            }
+            50% {
+                left: calc(100% + 150px);
+                transform: translateY(-50%) scaleX(1);
+            }
+            50.01% {
+                transform: translateY(-50%) scaleX(-1);
+            }
+            100% {
+                left: -150px;
+                transform: translateY(-50%) scaleX(-1);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="message">coming soon...</div>
     <div id="countdown" class="countdown"></div>
+    <img id="blahaj" src="static/blahaj.png" alt="Blahaj">
 
     <script>
         function countdownTimer(targetDate) {
@@ -58,6 +84,27 @@
 
         const targetDate = new Date('September 21, 2024 00:00:00').getTime();
         countdownTimer(targetDate);
+
+        counter = 0
+
+        function resetAnimation() {
+            const blahaj = document.getElementById('blahaj');
+    
+            if (counter == 1) {
+                blahaj.style.animation = 'none';
+                blahaj.style.animation = null; 
+                counter = 0
+            } else
+                counter = 1
+
+            function getRandomNumber(min = 10, max = 90) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            blahaj.style.top = getRandomNumber() + "%"
+            blahaj.offsetHeight; // trigger reflow
+        }
+
+        setInterval(resetAnimation, 5000);
     </script>
 </body>
 </html>
